@@ -1,0 +1,47 @@
+﻿import express from 'express';
+import mongoose from 'mongoose';
+import { config } from './config/index.js';
+import { productRouter } from './routes/product.routes.js';
+import { userRouter } from './routes/user.routes.js';
+import { mockRouter } from './routes/mock.routes.js';
+import { errorHandler } from './middlewares/error.middleware.js';
+import { logger } from './utils/logger.js';
+import { loggerRouter } from './routes/logger.routes.js';
+import { setupSwagger } from './config/swagger.config.js';
+
+const app = express();
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+setupSwagger(app);
+
+// Registrar las rutas
+app.use('/api/products', productRouter);
+app.use('/api/users', userRouter);
+app.use('/api/mocks', mockRouter);
+app.use('/api/loggerTest', loggerRouter);
+app.use('/api', loggerRouter);
+
+app.get('/', (req, res) => {
+    logger.http('Acceso a ruta raíz /');
+    res.json({ status: 'success', message: 'API ShipNow funcionando correctamente' });
+});
+
+app.use(errorHandler);
+
+async function startServer() {
+    try {
+        await mongoose.connect(config.mongoUri);
+        console.log('Base de datos conectada exitosamente');
+
+        app.listen(config.port, () => {
+        console.log(`Servidor corriendo en el puerto: ${config.port} [Ambiente: ${config.nodeEnv}]`);
+        });
+    } catch (error) {
+        console.error(`Error al conectar con la base de datos: ${error.message}`);
+        process.exit(1);
+    }
+}
+
+startServer();
