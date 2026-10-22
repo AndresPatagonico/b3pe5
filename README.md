@@ -1,4 +1,4 @@
-# ShipNow Backend - Pre-entregas Módulo 1, 2 y 3
+# ShipNow Backend - Pre-entregas Módulo 1, 2, 3, 4 y 5
 
 API REST desarrollada para "ShipNow", construida bajo una arquitectura profesional por capas (**Controller ➔ Service ➔ Repository**), con validación estricta de variables de entorno, un sistema completo de Mocking y Carga de Datos de Prueba (Seed), y una capa centralizada de manejo profesional de errores.
 
