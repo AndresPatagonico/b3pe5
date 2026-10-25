@@ -67,15 +67,18 @@ Puedes verificar el funcionamiento de todos los niveles ejecutando:
 Los logs de nivel `error` y `fatal` se almacenan automáticamente en la carpeta `logs/` mediante `winston-daily-rotate-file`, asegurando la rotación diaria y evitando la saturación del disco. Esta carpeta se encuentra excluida en el `.gitignore`.
 
 
-## Documentación Interactiva con Swagger (Módulo 5)
+## Documentación con Swagger (Módulo 5)
 
-La API expone una interfaz gráfica completa basada en OpenAPI para consultar y probar todos los endpoints:
+La API expone una interfaz interactiva donde están documentados todos los endpoints reales del proyecto, conectando las respuestas directamente con nuestro middleware global de errores.
 
 # Ruta de acceso: http://localhost:8080/api/docs
 
-Módulos Documentados y Tags:
-Users: Gestión de usuarios del sistema.
-Orders: Creación y estado de pedidos de envío.
-Deliveries: Asignación de repartidores (DELIVERY).
-Mocks: Generación de datos en memoria y carga masiva (Seed).
-Logger: Herramienta interna de pruebas técnicas.
+### ¿Cómo probarlo?
+1. Iniciá el servidor con `npm run dev`.
+2. Ingresá en el navegador a ** http://localhost:8080/api/docs **.
+3. Desde la interfaz vas a ver los siguientes módulos operativos:
+   * **Users y Products:** CRUD inicial (GET y POST) con esquemas reales.
+   * **Mocks:** Generación de datos falsos en memoria y Seed en MongoDB.
+   * **Logger:** Endpoint de diagnóstico para disparar eventos en Winston.
+
+*Nota: Los módulos de Orders y Deliveries fueron retirados temporalmente de la especificación Swagger hasta que sus respectivos controladores estén completamente implementados.*
