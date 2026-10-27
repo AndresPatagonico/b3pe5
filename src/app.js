@@ -8,6 +8,8 @@ import { errorHandler } from './middlewares/error.middleware.js';
 import { logger } from './utils/logger.js';
 import { loggerRouter } from './routes/logger.routes.js';
 import { setupSwagger } from './config/swagger.config.js';
+import { orderRouter } from './routes/order.routes.js';
+import { deliveryRouter } from './routes/delivery.routes.js';
 
 const app = express();
 
@@ -22,6 +24,8 @@ app.use('/api/users', userRouter);
 app.use('/api/mocks', mockRouter);
 app.use('/api/loggerTest', loggerRouter);
 app.use('/api', loggerRouter);
+app.use('/api/orders', orderRouter);
+app.use('/api/deliveries', deliveryRouter);
 
 app.get('/', (req, res) => {
     logger.http('Acceso a ruta raíz /');

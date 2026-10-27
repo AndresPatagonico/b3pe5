@@ -1,6 +1,6 @@
 # ShipNow Backend - Pre-entregas Módulo 1, 2, 3, 4 y 5
 
-API REST desarrollada para "ShipNow", construida bajo una arquitectura profesional por capas (**Controller ➔ Service ➔ Repository**), con validación estricta de variables de entorno, un sistema completo de Mocking y Carga de Datos de Prueba (Seed), y una capa centralizada de manejo profesional de errores.
+API REST desarrollada para "ShipNow", construida bajo una arquitectura profesional por capas (Controller ➔ Service ➔ Repository), con validación estricta de variables de entorno, un sistema completo de Mocking y Carga de Datos de Prueba (Seed), y una capa centralizada de manejo profesional de errores.
 
 # Tecnologías Utilizadas
 1. Node.js (Soporte de módulos ES import/export)
@@ -14,8 +14,8 @@ API REST desarrollada para "ShipNow", construida bajo una arquitectura profesion
 Sigue estos pasos en tu terminal para clonar y poner en marcha el proyecto en tu máquina:
 
 1. Clonar el repositorio:
-    git clone <URL_DE_TU_REPOSITORIO>
-    cd shipnow-backend
+    git clone https://github.com/AndresLovos/shipnow-api.git
+    cd shipnow-api
 2. Instalar las dependencias:
     npm install
 3. Configurar las variables de entorno:
@@ -49,23 +49,22 @@ La aplicación centraliza la gestión de excepciones eliminando bloques disperso
 
 ## Logging y Monitoreo (Módulo 4)
 
-La aplicación utiliza **Winston** para un logging estructurado y profesional, reemplazando los `console.log` tradicionales.
+La aplicación utiliza Winston para un logging estructurado y profesional, reemplazando los console.log tradicionales.
 
 ### Niveles de Log Configurados
-* **`fatal`**: Fallas críticas del sistema que impiden la ejecución.
-* **`error`**: Errores de cliente o excepciones operativas.
-* **`warning`**: Advertencias de negocio o situaciones atípicas (ej. stock bajo).
-* **`info`**: Eventos importantes (ej. servidor iniciado, conexión a BD).
-* **`http`**: Peticiones HTTP entrantes.
-* **`debug`**: Información técnica detallada (activa principalmente en desarrollo).
+- fatal: Fallas críticas del sistema que impiden la ejecución.
+- error: Errores de cliente o excepciones operativas.
+- warning: Advertencias de negocio o situaciones atípicas (ej. stock bajo).
+- info: Eventos importantes (ej. servidor iniciado, conexión a BD).
+- http: Peticiones HTTP entrantes.
+- debug: Información técnica detallada (activa principalmente en desarrollo).
 
 ### Endpoint de Prueba del Logger
 Puedes verificar el funcionamiento de todos los niveles ejecutando:
-* **GET** `http://localhost:8080/api/test-logger`
+- GET http://localhost:8080/api/test-logger
 
 ### Persistencia y Rotación
-Los logs de nivel `error` y `fatal` se almacenan automáticamente en la carpeta `logs/` mediante `winston-daily-rotate-file`, asegurando la rotación diaria y evitando la saturación del disco. Esta carpeta se encuentra excluida en el `.gitignore`.
-
+Los logs de nivel error y fatal se almacenan automáticamente en la carpeta logs/ mediante winston-daily-rotate-file, asegurando la rotación diaria y evitando la saturación del disco. Esta carpeta se encuentra excluida en el .gitignore.
 
 ## Documentación con Swagger (Módulo 5)
 
@@ -74,11 +73,10 @@ La API expone una interfaz interactiva donde están documentados todos los endpo
 # Ruta de acceso: http://localhost:8080/api/docs
 
 ### ¿Cómo probarlo?
-1. Iniciá el servidor con `npm run dev`.
-2. Ingresá en el navegador a ** http://localhost:8080/api/docs **.
+1. Iniciá el servidor con npm run dev.
+2. Ingresá en el navegador a http://localhost:8080/api/docs.
 3. Desde la interfaz vas a ver los siguientes módulos operativos:
-   * **Users y Products:** CRUD inicial (GET y POST) con esquemas reales.
-   * **Mocks:** Generación de datos falsos en memoria y Seed en MongoDB.
-   * **Logger:** Endpoint de diagnóstico para disparar eventos en Winston.
-
-*Nota: Los módulos de Orders y Deliveries fueron retirados temporalmente de la especificación Swagger hasta que sus respectivos controladores estén completamente implementados.*
+   * Users y Products: CRUD inicial (GET y POST) con esquemas reales.
+   * Orders y Deliveries: Endpoints para gestión de pedidos y entregas.
+   * Mocks: Generación de datos falsos en memoria y Seed en MongoDB.
+   * Logger: Endpoint de diagnóstico para disparar eventos en Winston.

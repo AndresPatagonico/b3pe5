@@ -3,7 +3,7 @@ import { ProductService } from '../services/product.service.js';
 const productService = new ProductService();
 
 export class ProductController {
-    static async getProducts(req, res) {
+    static async getProducts(req, res, next) {
         try {
             const products = await productService.getProducts();
             return res.status(200).json({ status: 'success', payload: products });
@@ -12,7 +12,7 @@ export class ProductController {
         }
     }
 
-    static async createProduct(req, res) {
+    static async createProduct(req, res, next) {
         try {
             const newProduct = await productService.createProduct(req.body);
             return res.status(201).json({ status: 'success', payload: newProduct });
